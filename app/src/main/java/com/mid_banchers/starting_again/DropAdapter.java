@@ -1,6 +1,7 @@
 package com.mid_banchers.starting_again;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,8 @@ public class DropAdapter extends ArrayAdapter {
             Toast.makeText(context, "pos"+position, Toast.LENGTH_SHORT).show();
         }if (position==1){
             Toast.makeText(context, "pos"+position, Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(context,Tab.class);
+
         }if (position==2){
             Toast.makeText(context, "pos"+position, Toast.LENGTH_SHORT).show();
         }

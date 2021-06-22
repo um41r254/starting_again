@@ -13,11 +13,17 @@ public class TabAdapter  extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+        if (position==0){
+            return new Tab1();
+        }
+else{
+            return new Tab2();
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 2;
     }
 }
