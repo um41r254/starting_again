@@ -12,14 +12,14 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tabs extends AppCompatActivity {
+public class Drop extends AppCompatActivity {
     Spinner drop;
     ImageView imageView,imageView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tabs);
+        setContentView(R.layout.activity_drop);
         drop=findViewById(R.id.Drop);
         List<String>data = new ArrayList<>();
         data.add("");
