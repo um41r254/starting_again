@@ -71,9 +71,7 @@ public class Drop extends AppCompatActivity {
         Glide.with(this).load("https://numeralpaint.com/wp-content/uploads/2020/08/japan-autumn-season-paint-by-number.jpg")
                 .into(imageView2);
 
+
+
     }
-
-
-
-
 }
