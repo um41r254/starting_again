@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -37,15 +38,15 @@ public class DropAdapter extends ArrayAdapter {
         return CreateDropDownView(position,convertView,parent);
     }
     public View CreateDropDownView(int position,  View convertView,  ViewGroup parent){
-        if (position==0){
-            Toast.makeText(context, "pos"+position, Toast.LENGTH_SHORT).show();
-        }if (position==1){
-            Toast.makeText(context, "pos"+position, Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(context,Tab.class);
-
-        }if (position==2){
-            Toast.makeText(context, "pos"+position, Toast.LENGTH_SHORT).show();
-        }
+//       if (position==2){
+//            Toast.makeText(context, "pos"+position, Toast.LENGTH_SHORT).show();
+//           Intent intent = new Intent(context,Tab.class);
+//           context.startActivity(intent);
+//
+//        }else{
+//            Toast.makeText(context, "pos"+position, Toast.LENGTH_SHORT).show();
+//        }
         return LayoutInflater .from(context).inflate(R.layout.add,parent,false);
     }
+
 }

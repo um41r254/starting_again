@@ -2,6 +2,7 @@ package com.mid_banchers.starting_again;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -39,6 +40,30 @@ public class Drop extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        drop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position==1){
+                    Intent intent = new Intent(Drop.this,Tab.class);
+                    startActivity(intent);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+//        drop.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                if (position==1){
+//                    Intent intent = new Intent(Drop.this,Tab.class);
+//                    startActivity(intent);
+//                }
+//            }
+//        });
         Glide.with(this).load("https://numeralpaint.com/wp-content/uploads/2020/08/japan-autumn-season-paint-by-number.jpg")
                 .into(imageView);
         imageView2=findViewById(R.id.imageView2);
