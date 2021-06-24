@@ -1,7 +1,5 @@
 package com.mid_banchers.starting_again;
 
-import android.content.Context;
-import android.icu.number.CompactNotation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecAdapter extends RecyclerView.Adapter<RecAdapter.ViewHolder>{
+public class AdapterRecycler extends RecyclerView.Adapter<AdapterRecycler.ViewHolder>{
 
     @NonNull
     @Override
