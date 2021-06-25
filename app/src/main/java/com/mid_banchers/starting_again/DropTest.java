@@ -2,7 +2,6 @@ package com.mid_banchers.starting_again;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,14 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Drop extends AppCompatActivity {
+public class DropTest extends AppCompatActivity {
     Spinner drop;
     ImageView imageView,imageView2;
 
@@ -36,7 +34,7 @@ public class Drop extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Drop.this,Tab.class);
+                Intent intent = new Intent(DropTest.this,Tab.class);
                 startActivity(intent);
             }
         });
@@ -44,7 +42,7 @@ public class Drop extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position==1){
-                    Intent intent = new Intent(Drop.this,Tab.class);
+                    Intent intent = new Intent(DropTest.this,Tab.class);
                     startActivity(intent);
                 }
 

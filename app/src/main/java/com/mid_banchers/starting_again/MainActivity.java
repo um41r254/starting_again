@@ -46,7 +46,7 @@ Button dia , page;
         page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Drop.class);
+                Intent intent = new Intent(MainActivity.this, DropTest.class);
                 startActivity(intent);
             }
         });
