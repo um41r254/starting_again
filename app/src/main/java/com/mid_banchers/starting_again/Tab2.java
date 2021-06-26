@@ -24,7 +24,7 @@ import java.util.List;
 
 public class Tab2 extends Fragment {
     RecyclerView reshow;
-    RecycleAdapter Adapter;
+    RecycleDirectAdapter AdapterDirect;
     List<String> name = new ArrayList<>();
     List<String> image = new ArrayList<>();
     List<String> id = new ArrayList<>();
@@ -51,8 +51,8 @@ public class Tab2 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         reshow = view.findViewById(R.id.rv_show);
-        Adapter = new RecycleAdapter(getContext());
-        reshow.setAdapter(Adapter);
+        AdapterDirect = new RecycleDirectAdapter(getContext());
+        reshow.setAdapter(AdapterDirect);
         reshow.setLayoutManager(new GridLayoutManager(getContext(),2));
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -68,7 +68,7 @@ public class Tab2 extends Fragment {
                             image.add(Ds.getString("image"));
                             id.add(Ds.getId());
                         }
-                        Adapter.getdata(id,image,name);
+                        AdapterDirect.getdata(id,image,name);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

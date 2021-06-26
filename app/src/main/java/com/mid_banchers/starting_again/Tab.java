@@ -24,10 +24,10 @@ TabLayout tabs;
         new TabLayoutMediator(tabs,pager,(TabLayout.Tab tab, int position) -> {
             if (position==0){
 
-                tab.setText("Data Wait");
+                tab.setText("Data Delay");
             }if (position==1){
 
-                tab.setText("With Data");
+                tab.setText("View With Data");
             }
 
         }).attach();
