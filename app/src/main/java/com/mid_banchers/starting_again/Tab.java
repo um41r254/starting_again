@@ -24,10 +24,10 @@ TabLayout tabs;
         new TabLayoutMediator(tabs,pager,(TabLayout.Tab tab, int position) -> {
             if (position==0){
 
-                tab.setText("First");
+                tab.setText("Data Wait");
             }if (position==1){
 
-                tab.setText("Secoond");
+                tab.setText("With Data");
             }
 
         }).attach();

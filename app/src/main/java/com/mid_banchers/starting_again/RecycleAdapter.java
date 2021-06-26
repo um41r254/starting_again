@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -13,18 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclycleAdapter extends RecyclerView.Adapter<RecyclycleAdapter.ViewHolder> {
+public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {
 private Context context;
 private List <String>  id= new ArrayList<>();
 private List <String>  name= new ArrayList<>();
 private List <String>  image = new ArrayList<>();
 
-    public RecyclycleAdapter(Context context) {
+    public RecycleAdapter(Context context) {
         this.context = context;
     }
 
@@ -56,11 +55,10 @@ private List <String>  image = new ArrayList<>();
             return id.size();
         }
     }
-    public void getdata(List<String> data ,List<String> data1 ,List<String> data2){
-        id.addAll(data);
-        image.addAll(data1);
-        name.addAll(data2);
-
+    public void getdata(List<String> data1 ,List<String> data2 ,List<String> data3){
+        id.addAll(data1);
+        image.addAll(data2);
+        name.addAll(data3);
         notifyDataSetChanged();
     }
 

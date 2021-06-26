@@ -10,13 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Starting_again">
         <activity android:name=".RecycleImplement">
+
+        </activity>
+        <activity android:name=".Tab">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Tab" />
         <activity android:name=".DropTest" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -24,6 +26,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

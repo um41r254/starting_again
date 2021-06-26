@@ -14,8 +14,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Document;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,14 +22,14 @@ public class RecycleImplement extends AppCompatActivity {
     List<String> dbimage = new ArrayList<>();
     List<String> dpname = new ArrayList<>();
     List<String> dbid = new ArrayList<>();
-    RecyclycleAdapter adapter;
+    RecycleAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycle_implement);
         rv1 = findViewById(R.id.rvcheck);
-        adapter = new RecyclycleAdapter(this);
+        adapter = new RecycleAdapter(this);
         rv1.setAdapter(adapter);
         rv1.setLayoutManager(new GridLayoutManager(this,2));
         getDatafromDb();

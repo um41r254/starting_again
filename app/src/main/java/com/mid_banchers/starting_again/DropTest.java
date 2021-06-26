@@ -65,6 +65,13 @@ public class DropTest extends AppCompatActivity {
         Glide.with(this).load("https://numeralpaint.com/wp-content/uploads/2020/08/japan-autumn-season-paint-by-number.jpg")
                 .into(imageView);
         imageView2=findViewById(R.id.imageView2);
+        imageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DropTest.this,RecycleImplement.class);
+                startActivity(intent);
+            }
+        });
 
         Glide.with(this).load("https://numeralpaint.com/wp-content/uploads/2020/08/japan-autumn-season-paint-by-number.jpg")
                 .into(imageView2);
