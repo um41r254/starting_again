@@ -1,14 +1,11 @@
 package com.mid_banchers.starting_again;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -69,13 +66,13 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
 
     public class ViewHolderDirect extends RecyclerView.ViewHolder {
         CardView cardView;
-        TextView textView;
-        ImageView imageView;
+        TextView textView ,text;
+        ImageView imageView,imageV;
 
         public ViewHolderDirect(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.brand);
-            textView = itemView.findViewById(R.id.bname);
+            textView = itemView.findViewById(R.id.bName);
             imageView = itemView.findViewById(R.id.bLogo);
 //          String name[]= listName.toArray(new String[0]);
 
@@ -83,19 +80,38 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
 
                 @Override
                 public void onClick(View v) {
-                  String qqq = listName.get(ViewHolderDirect.this.getAdapterPosition());
-                  String qqw = listID.get(ViewHolderDirect.this.getAdapterPosition());
 
-                  MaterialAlertDialogBuilder popUp =  new MaterialAlertDialogBuilder(context);
-                            popUp.setTitle("Quick View");
-                           popUp.setItems(new String[]{qqq,qqw}, new DialogInterface.OnClickListener() {
-                               @Override
-                               public void onClick(DialogInterface dialog, int which) {
-                                   if (which==1){
-                                       Toast.makeText(context, "dsd", Toast.LENGTH_SHORT).show();
-                                   }
-                               }
-                           });popUp.show();
+
+
+                  String name = listName.get(ViewHolderDirect.this.getAdapterPosition());
+                  String image= listImage.get(ViewHolderDirect.this.getAdapterPosition());
+//                  new Dialog(context,name,image)
+//                          .show();
+
+
+
+//                  MaterialAlertDialogBuilder popUp =  new MaterialAlertDialogBuilder(context);
+//                            popUp.setTitle("Quick View");
+//                           popUp.setItems(new String[]{name,image}, new DialogInterface.OnClickListener() {
+//                               @Override
+//                               public void onClick(DialogInterface dialog, int which) {
+//                                   if (which==1){
+//                                       Toast.makeText(context, "dsd", Toast.LENGTH_SHORT).show();
+//                                   }
+//                               }
+//                           });popUp.show();
+
+
+                    View view = LayoutInflater.from(context).inflate(R.layout.brand,null);
+                    text = view.findViewById(R.id.bName);
+                    imageV = view.findViewById(R.id.bLogo);
+
+
+                    text.setText(name);
+                    Glide.with(context).load(image).into(imageV);
+                          MaterialAlertDialogBuilder popUP = new MaterialAlertDialogBuilder(context);
+                          popUP.setView(view);
+                          popUP.show();
 
                 }
             });
