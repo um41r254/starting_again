@@ -18,9 +18,9 @@ import java.util.List;
 
 public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdapter.ViewHolderDirect> {
     private Context context;
-    private List<String> id= new ArrayList<>();
-    private List <String>  name= new ArrayList<>();
-    private List <String>  image = new ArrayList<>();
+    private List<String> listID = new ArrayList<>();
+    private List<String> listName = new ArrayList<>();
+    private List<String> listImage = new ArrayList<>();
 
     public RecycleDirectAdapter(Context context) {
         this.context = context;
@@ -30,15 +30,15 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
     @NonNull
     @Override
     public ViewHolderDirect onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.brand,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.brand, parent, false);
         return new ViewHolderDirect(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDirect holder, int position) {
-        if (id.size()>0){
-            holder.textView.setText(name.get(position));
-            Glide.with(context).load(image.get(position))
+        if (listID.size() > 0) {
+            holder.textView.setText(listName.get(position));
+            Glide.with(context).load(listImage.get(position))
                     .into(holder.imageView);
 
 
@@ -48,15 +48,18 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
 
     @Override
     public int getItemCount() {
-
-            return id.size();
-
-
+        return listID.size();
     }
-    public void getdata(List<String> data1 ,List<String> data2 ,List<String> data3){
-        id.addAll(data1);
-        image.addAll(data2);
-        name.addAll(data3);
+
+    public void getData(List<String> data1, List<String> data2, List<String> data3) {
+
+        listID.clear();
+        listImage.clear();
+        listName.clear();
+
+        listID.addAll(data1);
+        listImage.addAll(data2);
+        listName.addAll(data3);
         notifyDataSetChanged();
     }
 
@@ -64,13 +67,14 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
         CardView cardView;
         TextView textView;
         ImageView imageView;
+
         public ViewHolderDirect(@NonNull View itemView) {
             super(itemView);
-            cardView =  itemView.findViewById(R.id.brand);
+            cardView = itemView.findViewById(R.id.brand);
             textView = itemView.findViewById(R.id.bname);
             imageView = itemView.findViewById(R.id.bLogo);
 
         }
 
-        }
     }
+}

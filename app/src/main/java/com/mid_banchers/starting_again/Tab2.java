@@ -68,7 +68,7 @@ public class Tab2 extends Fragment {
                             image.add(Ds.getString("image"));
                             id.add(Ds.getId());
                         }
-                        AdapterDirect.getdata(id,image,name);
+                        AdapterDirect.getData(id,image,name);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

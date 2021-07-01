@@ -1,7 +1,5 @@
 package com.mid_banchers.starting_again;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,26 +8,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.core.Tag;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleImplement extends AppCompatActivity {
     RecyclerView rv1;
-    List<String> dbimage = new ArrayList<>();
-    List<String> dpname = new ArrayList<>();
-    List<String> dbid = new ArrayList<>();
+    List<String> listImage = new ArrayList<>();
+    List<String> listName = new ArrayList<>();
+    List<String> listID = new ArrayList<>();
     RecycleDirectAdapter adapter;
 
     @Override
@@ -39,13 +29,14 @@ public class RecycleImplement extends AppCompatActivity {
         rv1 = findViewById(R.id.rvcheck);
         adapter = new RecycleDirectAdapter(this);
         rv1.setAdapter(adapter);
-        rv1.setLayoutManager(new GridLayoutManager(this,2));
+        rv1.setLayoutManager(new GridLayoutManager(this, 2));
         getDatafromDb();
 
 
     }
-    private void getDatafromDb(){
-        FirebaseFirestore db =  FirebaseFirestore.getInstance();
+
+    private void getDatafromDb() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 //        db.collection("Brands")
 //                .get()
@@ -67,23 +58,29 @@ public class RecycleImplement extends AppCompatActivity {
 //
 //            }
 //        });
-        final CollectionReference docRef  = db.collection("Brands");
-        docRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    Log.w("Fail", error);
-                }
-                for (QueryDocumentSnapshot ds : value) {
-                    dpname.add(ds.getString("brandName"));
-                    dbimage.add(ds.getString("image"));
-                    dbid.add(ds.getId());
-                }
-                Toast.makeText(RecycleImplement.this, "Fetched", Toast.LENGTH_SHORT).show();
-                adapter.getdata(dbid, dbimage, dpname);
 
-            }
-        });
+
+        db.collection("Brands")
+                .addSnapshotListener((value, error) -> {
+                    if (error != null) {
+                        Log.w("Fail", error);
+                    } else {
+
+                        listName.clear();
+                        listImage.clear();
+                        listID.clear();
+
+                        for (QueryDocumentSnapshot ds : value) {
+                            listName.add(ds.getString("brandName"));
+                            listImage.add(ds.getString("image"));
+                            listID.add(ds.getId());
+                        }
+                    }
+
+                    Toast.makeText(RecycleImplement.this, "Fetched", Toast.LENGTH_SHORT).show();
+                    adapter.getData(listID, listImage, listName);
+
+                });
 
     }
 }
