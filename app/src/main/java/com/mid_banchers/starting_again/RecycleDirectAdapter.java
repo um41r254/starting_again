@@ -1,6 +1,7 @@
 package com.mid_banchers.starting_again;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +74,11 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
             cardView = itemView.findViewById(R.id.brand);
             textView = itemView.findViewById(R.id.bname);
             imageView = itemView.findViewById(R.id.bLogo);
+
+            cardView.setOnClickListener(v -> {
+                listID.get(this.getAdapterPosition());
+                context.startActivity(new Intent(context, Tab.class));
+            });
 
         }
 
