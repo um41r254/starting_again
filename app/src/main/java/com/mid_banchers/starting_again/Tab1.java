@@ -58,20 +58,20 @@ List<String> id = new ArrayList<>();
         reload.setLayoutManager(new GridLayoutManager(getContext(),2));
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Brands")
+        db.collection("Products")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
                         for(DocumentSnapshot Ds : queryDocumentSnapshots.getDocuments())
                         {
 
-                            name.add(Ds.getString("brandName"));
+                            name.add(Ds.getString("articleName"));
                             image.add(Ds.getString("image"));
                             id.add(Ds.getId());
                         }
                         Adapter.getdata(id,image,name);
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
