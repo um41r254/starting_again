@@ -66,7 +66,7 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
 
     public class ViewHolderDirect extends RecyclerView.ViewHolder {
         CardView cardView;
-        TextView textView ,text;
+        TextView textView ,text1,text2;
         ImageView imageView,imageV;
 
         public ViewHolderDirect(@NonNull View itemView) {
@@ -102,13 +102,15 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
 //                           });popUp.show();
 
 
-                    View view = LayoutInflater.from(context).inflate(R.layout.brand,null);
-                    text = view.findViewById(R.id.bName);
-                    imageV = view.findViewById(R.id.bLogo);
+                    View view = LayoutInflater.from(context).inflate(R.layout.showing_string,null);
+                    text1 = view.findViewById(R.id.string1);
+                    text2 = view.findViewById(R.id.string2);
+//                    imageV = view.findViewById(R.id.string1);
 
 
-                    text.setText(name);
-                    Glide.with(context).load(image).into(imageV);
+                    text1.setText(name);
+                    text2.setText(image);
+//                    Glide.with(context).load(image).into(imageV);
                           MaterialAlertDialogBuilder popUP = new MaterialAlertDialogBuilder(context);
                           popUP.setView(view);
                           popUP.show();
