@@ -1,14 +1,13 @@
 package com.mid_banchers.starting_again;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.firebase.firestore.CollectionReference;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -30,34 +29,13 @@ public class RecycleImplement extends AppCompatActivity {
         adapter = new RecycleDirectAdapter(this);
         rv1.setAdapter(adapter);
         rv1.setLayoutManager(new GridLayoutManager(this, 2));
-        getDatafromDb();
+        getDataFromDb();
 
 
     }
 
-    private void getDatafromDb() {
+    private void getDataFromDb() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-//        db.collection("Brands")
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        for (DocumentSnapshot ds : queryDocumentSnapshots.getDocuments()){
-//                            dpname.add(ds.getString("brandName"));
-//                            dbimage.add(ds.getString("image"));
-//                            dbid.add(ds.getId());
-//                        }
-//                        Toast.makeText(RecycleImplement.this, "Fetched", Toast.LENGTH_SHORT).show();
-//                        adapter.getdata(dbid,dbimage,dpname);
-//
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//
-//            }
-//        });
 
 
         db.collection("Brands")

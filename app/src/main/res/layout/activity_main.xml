@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/dialog"
+        android:id="@+id/btn_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pop up"
@@ -21,8 +21,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        app:layout_constraintBottom_toBottomOf="@+id/dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_dialog"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/dialog"
-        app:layout_constraintTop_toTopOf="@+id/dialog" />
+        app:layout_constraintStart_toEndOf="@+id/btn_dialog"
+        app:layout_constraintTop_toTopOf="@+id/btn_dialog" />
+
+    <Button
+        android:id="@+id/next2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_dialog"
+        app:layout_constraintTop_toTopOf="@+id/btn_dialog" />
+
+    <Button
+        android:id="@+id/btn_add_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/next"
+        app:layout_constraintStart_toStartOf="@+id/btn_dialog"
+        app:layout_constraintTop_toTopOf="@+id/btn_dialog" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/btn_dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

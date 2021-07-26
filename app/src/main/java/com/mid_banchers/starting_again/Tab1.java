@@ -26,12 +26,11 @@ import java.util.List;
 
 
 public class Tab1 extends Fragment {
-RecyclerView reload;
-RecycleAdapter Adapter;
-List<String> name = new ArrayList<>();
-List<String> image = new ArrayList<>();
-List<String> id = new ArrayList<>();
-
+    RecyclerView reload;
+    RecycleAdapter Adapter;
+    List<String> name = new ArrayList<>();
+    List<String> image = new ArrayList<>();
+    List<String> id = new ArrayList<>();
 
 
     public Tab1() {
@@ -55,7 +54,7 @@ List<String> id = new ArrayList<>();
         reload = view.findViewById(R.id.rv_load);
         Adapter = new RecycleAdapter(getContext());
         reload.setAdapter(Adapter);
-        reload.setLayoutManager(new GridLayoutManager(getContext(),2));
+        reload.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Products")
@@ -64,14 +63,13 @@ List<String> id = new ArrayList<>();
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                        for(DocumentSnapshot Ds : queryDocumentSnapshots.getDocuments())
-                        {
+                        for (DocumentSnapshot Ds : queryDocumentSnapshots.getDocuments()) {
 
                             name.add(Ds.getString("articleName"));
                             image.add(Ds.getString("image"));
                             id.add(Ds.getId());
                         }
-                        Adapter.getdata(id,image,name);
+                        Adapter.getdata(id, image, name);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

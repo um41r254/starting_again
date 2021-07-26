@@ -7,9 +7,11 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.mid_banchers.starting_again.databinding.ActivityTabBinding;
 
 public class Tab extends AppCompatActivity {
 TabLayout tabs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

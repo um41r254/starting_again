@@ -9,46 +9,82 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.mid_banchers.starting_again.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-Button dia , page;
+
+    private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        dia = findViewById(R.id.dialog);
-        dia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String names[] ={"Usama","Zain","Umair"};
-                MaterialAlertDialogBuilder popUp = new MaterialAlertDialogBuilder(MainActivity.this);
-                popUp.setTitle("Names");
-                popUp.setItems(names, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (which==1){
-                            Toast.makeText(MainActivity.this, "Option"+which, Toast.LENGTH_SHORT).show();
-                        }
-                        if (which==2){
-                            Toast.makeText(MainActivity.this, "Option"+which, Toast.LENGTH_SHORT).show();
-                        }
-                        if (which==3){
-                            Toast.makeText(MainActivity.this, "Option"+which, Toast.LENGTH_SHORT).show();
-                        }
+//        binding = ActivityMainBinding.inflate(getLayoutInflater());
+//        View view = binding.getRoot();
+        //   setContentView(view);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
-                    }
-                });popUp.show();
-            }
+        binding.btnAddData.setOnClickListener(view1 -> {
+
+//            Map<String, Object> data = new HashMap<>();
+//            data.put("name", text);
+//            data.put("secondName", "Umair");
+//            data.put("scores", scores);
+//            data.put("class", list);
+//            data.put("isNull", true);
+//            data.put("addedOn", Timestamp.now());
+
+
+//            db.collection("Brands")
+//                    .document("ABC")
+//                    .update(data)
+//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void aVoid) {
+//
+//                            Toast.makeText(MainActivity.this, "Data Added", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+
         });
-        page= findViewById(R.id.next);
-        page.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DropTest.class);
-                startActivity(intent);
-            }
+
+
+        binding.btnDialog.setOnClickListener(v -> {
+            String names[] = {"Usama", "Zain", "Umair"};
+            MaterialAlertDialogBuilder popUp = new MaterialAlertDialogBuilder(MainActivity.this);
+            popUp.setTitle("Names");
+            popUp.setItems(names, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (which == 1) {
+                        Toast.makeText(MainActivity.this, "Option" + which, Toast.LENGTH_SHORT).show();
+                    }
+                    if (which == 2) {
+                        Toast.makeText(MainActivity.this, "Option" + which, Toast.LENGTH_SHORT).show();
+                    }
+                    if (which == 3) {
+                        Toast.makeText(MainActivity.this, "Option" + which, Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+            });
+            popUp.show();
+        });
+
+        binding.next.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, DropTest.class);
+            startActivity(intent);
         });
 
     }
