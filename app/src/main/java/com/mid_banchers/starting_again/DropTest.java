@@ -2,6 +2,7 @@ package com.mid_banchers.starting_again;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,34 +12,37 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.bumptech.glide.Glide;
+import com.mid_banchers.starting_again.databinding.ActivityDropBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DropTest extends AppCompatActivity {
-    Spinner drop;
-    ImageView imageView,imageView2;
-
+//    Spinner drop;
+//    ImageView imageView,imageView2;
+private ActivityDropBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drop);
-        drop=findViewById(R.id.Drop);
+        binding = ActivityDropBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+//        drop=findViewById(R.id.Drop);
         List<String>data = new ArrayList<>();
         data.add("");
         data.add("");
         data.add("");
         ArrayAdapter<String>adapter= new DropAdapter(this,R.layout.add,data);
-        drop.setAdapter(adapter);
-        imageView=findViewById(R.id.imageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        binding.Drop.setAdapter(adapter);
+//        imageView=findViewById(R.id.imageView);
+        binding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DropTest.this,Tab.class);
                 startActivity(intent);
             }
         });
-        drop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.Drop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position==1){
@@ -63,9 +67,9 @@ public class DropTest extends AppCompatActivity {
 //            }
 //        });
         Glide.with(this).load("https://numeralpaint.com/wp-content/uploads/2020/08/japan-autumn-season-paint-by-number.jpg")
-                .into(imageView);
-        imageView2=findViewById(R.id.imageView2);
-        imageView2.setOnClickListener(new View.OnClickListener() {
+                .into(binding.imageView);
+//        imageView2=findViewById(R.id.imageView2);
+        binding.imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DropTest.this,RecycleImplement.class);
@@ -74,7 +78,7 @@ public class DropTest extends AppCompatActivity {
         });
 
         Glide.with(this).load("https://numeralpaint.com/wp-content/uploads/2020/08/japan-autumn-season-paint-by-number.jpg")
-                .into(imageView2);
+                .into(binding.imageView2);
 
 
 

@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        binding = ActivityMainBinding.inflate(getLayoutInflater());
-//        View view = binding.getRoot();
-        //   setContentView(view);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+           setContentView(view);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         binding.next.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, DropTest.class);
             startActivity(intent);
+            Toast.makeText(this, "next", Toast.LENGTH_SHORT).show();
         });
 
     }

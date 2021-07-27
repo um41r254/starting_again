@@ -46,7 +46,7 @@ public class DropAdapter extends ArrayAdapter {
 //        }else{
 //            Toast.makeText(context, "pos"+position, Toast.LENGTH_SHORT).show();
 //        }
-        return LayoutInflater .from(context).inflate(R.layout.add,parent,false);
+        return LayoutInflater .from(context).inflate(resource,parent,false);
     }
 
 }

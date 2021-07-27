@@ -27,16 +27,6 @@
         app:layout_constraintTop_toTopOf="@+id/btn_dialog" />
 
     <Button
-        android:id="@+id/next2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_dialog"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_dialog"
-        app:layout_constraintTop_toTopOf="@+id/btn_dialog" />
-
-    <Button
         android:id="@+id/btn_add_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

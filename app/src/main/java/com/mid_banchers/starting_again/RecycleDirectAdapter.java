@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.mid_banchers.starting_again.databinding.BrandBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,6 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
     public RecycleDirectAdapter(Context context) {
         this.context = context;
     }
-
 
     @NonNull
     @Override
@@ -69,8 +69,14 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
         TextView textView ,text1,text2;
         ImageView imageView,imageV;
 
+
+        private BrandBinding binding;
+
         public ViewHolderDirect(@NonNull View itemView) {
-            super(itemView);
+            super(itemView.getRootView());
+//            this.itemView = binding;
+
+
             cardView = itemView.findViewById(R.id.brand);
             textView = itemView.findViewById(R.id.bName);
             imageView = itemView.findViewById(R.id.bLogo);

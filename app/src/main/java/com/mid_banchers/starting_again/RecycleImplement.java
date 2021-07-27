@@ -2,6 +2,7 @@ package com.mid_banchers.starting_again;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,25 +11,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.mid_banchers.starting_again.databinding.ActivityRecycleImplementBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleImplement extends AppCompatActivity {
-    RecyclerView rv1;
     List<String> listImage = new ArrayList<>();
     List<String> listName = new ArrayList<>();
     List<String> listID = new ArrayList<>();
     RecycleDirectAdapter adapter;
 
+    private ActivityRecycleImplementBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycle_implement);
-        rv1 = findViewById(R.id.rvcheck);
+        binding= ActivityRecycleImplementBinding .inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
         adapter = new RecycleDirectAdapter(this);
-        rv1.setAdapter(adapter);
-        rv1.setLayoutManager(new GridLayoutManager(this, 2));
+       binding.rvcheck.setAdapter(adapter);
+        binding.rvcheck.setLayoutManager(new GridLayoutManager(this, 2));
         getDataFromDb();
 
 

@@ -17,13 +17,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.mid_banchers.starting_again.databinding.FragmentTab2Binding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Tab2 extends Fragment {
-    RecyclerView reshow;
+//    RecyclerView reshow;
     RecycleDirectAdapter AdapterDirect;
     List<String> name = new ArrayList<>();
     List<String> image = new ArrayList<>();
@@ -38,22 +39,24 @@ public class Tab2 extends Fragment {
 
 
 
-
+private FragmentTab2Binding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab2, container, false);
+
+         binding=FragmentTab2Binding.inflate(inflater, container, false);
+         View view = binding.getRoot();
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        reshow = view.findViewById(R.id.rv_show);
         AdapterDirect = new RecycleDirectAdapter(getContext());
-        reshow.setAdapter(AdapterDirect);
-        reshow.setLayoutManager(new GridLayoutManager(getContext(),2));
+        binding.rvShow.setAdapter(AdapterDirect);
+        binding.rvShow.setLayoutManager(new GridLayoutManager(getContext(),2));
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Brands")
