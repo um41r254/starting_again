@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.mid_banchers.starting_again.databinding.BrandBinding;
+import com.mid_banchers.starting_again.databinding.ShowingStringBinding;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,16 +33,17 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
     @NonNull
     @Override
     public ViewHolderDirect onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.brand, parent, false);
+        BrandBinding view = BrandBinding.inflate(LayoutInflater.from(parent.getContext()) , parent , false);
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.brand, parent, false);
         return new ViewHolderDirect(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDirect holder, int position) {
         if (listID.size() > 0) {
-            holder.textView.setText(listName.get(position));
+            holder.binding.bName.setText(listName.get(position));
             Glide.with(context).load(listImage.get(position))
-                    .into(holder.imageView);
+                    .into(holder.binding.bLogo);
 
 
         }
@@ -65,35 +68,26 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
     }
 
     public class ViewHolderDirect extends RecyclerView.ViewHolder {
-        CardView cardView;
-        TextView textView ,text1,text2;
-        ImageView imageView,imageV;
+
+        BrandBinding binding;
+
+        public ViewHolderDirect(@NonNull BrandBinding itemView) {
+            super(itemView.getRoot());
+            binding = itemView;
 
 
-        private BrandBinding binding;
-
-        public ViewHolderDirect(@NonNull View itemView) {
-            super(itemView.getRootView());
-//            this.itemView = binding;
-
-
-            cardView = itemView.findViewById(R.id.brand);
-            textView = itemView.findViewById(R.id.bName);
-            imageView = itemView.findViewById(R.id.bLogo);
 //          String name[]= listName.toArray(new String[0]);
 
-            cardView.setOnClickListener(new View.OnClickListener() {
+            binding.brand.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
 
 
-
-                  String name = listName.get(ViewHolderDirect.this.getAdapterPosition());
-                  String image= listImage.get(ViewHolderDirect.this.getAdapterPosition());
+                    String name = listName.get(ViewHolderDirect.this.getAdapterPosition());
+                    String image = listImage.get(ViewHolderDirect.this.getAdapterPosition());
 //                  new Dialog(context,name,image)
 //                          .show();
-
 
 
 //                  MaterialAlertDialogBuilder popUp =  new MaterialAlertDialogBuilder(context);
@@ -106,20 +100,23 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
 //                                   }
 //                               }
 //                           });popUp.show();
+                    ShowingStringBinding showingStringBinding;
+                    showingStringBinding= ShowingStringBinding.inflate(LayoutInflater.from(context));
+                    View view = showingStringBinding.getRoot();
 
 
-                    View view = LayoutInflater.from(context).inflate(R.layout.showing_string,null);
-                    text1 = view.findViewById(R.id.string1);
-                    text2 = view.findViewById(R.id.string2);
+//                    View view = LayoutInflater.from(context).inflate(R.layout.showing_string, null);
+//                    text1 = view.findViewById(R.id.string1);
+//                    text2 = view.findViewById(R.id.string2);
 //                    imageV = view.findViewById(R.id.string1);
 
 
-                    text1.setText(name);
-                    text2.setText(image);
+                    showingStringBinding.string1.setText(name);
+                    showingStringBinding.string2.setText(image);
 //                    Glide.with(context).load(image).into(imageV);
-                          MaterialAlertDialogBuilder popUP = new MaterialAlertDialogBuilder(context);
-                          popUP.setView(view);
-                          popUP.show();
+                    MaterialAlertDialogBuilder popUP = new MaterialAlertDialogBuilder(context);
+                    popUP.setView(view);
+                    popUP.show();
 
                 }
             });
