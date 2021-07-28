@@ -32,19 +32,17 @@
         android:layout_height="wrap_content"
         android:text="Add Data"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/next"
+        app:layout_constraintEnd_toEndOf="@+id/btn_dialog"
         app:layout_constraintStart_toStartOf="@+id/btn_dialog"
         app:layout_constraintTop_toTopOf="@+id/btn_dialog" />
 
-    <EditText
-        android:id="@+id/et_name"
+    <Button
+        android:id="@+id/timeUpd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btn_dialog"
+        android:text="Update"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_add_data"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/btn_add_data"
+        app:layout_constraintTop_toTopOf="@+id/btn_add_data" />
 </androidx.constraintlayout.widget.ConstraintLayout>
