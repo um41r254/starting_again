@@ -35,7 +35,7 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
     public ViewHolderDirect onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         BrandBinding view = BrandBinding.inflate(LayoutInflater.from(parent.getContext()) , parent , false);
 //        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.brand, parent, false);
-        return new ViewHolderDirect(view);
+        return new ViewHolderDirect(view); // holder name
     }
 
     @Override
@@ -98,7 +98,7 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
 //                                   if (which==1){
 //                                       Toast.makeText(context, "dsd", Toast.LENGTH_SHORT).show();
 //                                   }
-//                               }
+//                                }
 //                           });popUp.show();
                     ShowingStringBinding showingStringBinding;
                     showingStringBinding= ShowingStringBinding.inflate(LayoutInflater.from(context));

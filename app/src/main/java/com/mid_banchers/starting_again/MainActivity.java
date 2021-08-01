@@ -1,9 +1,11 @@
 package com.mid_banchers.starting_again;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +25,9 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    List<String> path;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +47,19 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.timeUpd.setOnClickListener(v -> {
             Map<String,Object> data = new HashMap<>();
-            data.put("addedOn",Timestamp.now());
-            db.collection("Brands")
-                    .document()
-                    .set(data)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            data.putIfAbsent("addedOn",Timestamp.now());
+            db.collection("Brands");
+            for (String ts: path  ) {
+
+                       db .document(ts)
+                        .set(data)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
 
         });
 
@@ -85,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             Toast.makeText(this, "next", Toast.LENGTH_SHORT).show();
         });
+
+    }
+    public void getPath(List<String>path1){
+        path.addAll(path1);
 
     }
 }

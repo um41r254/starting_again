@@ -2,7 +2,9 @@ package com.mid_banchers.starting_again;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,6 +14,7 @@ import com.mid_banchers.starting_again.databinding.ActivityAddDataBinding;
 import com.mid_banchers.starting_again.databinding.AddBinding;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AddData extends AppCompatActivity {
@@ -29,9 +32,11 @@ public class AddData extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+
                 Map<String,Object> data = new HashMap<>();
                 data.put("brandName", binding.brName.getText().toString());
-                data.put("id", binding.brId.getText().toString());
+                data.put("id", Integer.parseInt(binding.brId.getText().toString()) );
                 data.put("image", binding.brImage.getText().toString());
                 
                 db.collection("Brands")
@@ -44,6 +49,13 @@ public class AddData extends AppCompatActivity {
                             }
                         });
 
+            }
+        });
+        binding.del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddData.this,DeletePage.class);
+                startActivity(intent);
             }
         });
 

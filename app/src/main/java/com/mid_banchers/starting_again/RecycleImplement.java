@@ -52,6 +52,7 @@ public class RecycleImplement extends AppCompatActivity {
                         listImage.clear();
                         listID.clear();
 
+
                         for (QueryDocumentSnapshot ds : value) {
                             listName.add(ds.getString("brandName"));
                             listImage.add(ds.getString("image"));
@@ -61,6 +62,8 @@ public class RecycleImplement extends AppCompatActivity {
 
                     Toast.makeText(RecycleImplement.this, "Fetched", Toast.LENGTH_SHORT).show();
                     adapter.getData(listID, listImage, listName);
+
+
 
                 });
 

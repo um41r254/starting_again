@@ -58,6 +58,10 @@ binding = BrandBinding.inflate(LayoutInflater.from(parent.getContext()),parent,f
         }
     }
     public void getdata(List<String> data1 ,List<String> data2 ,List<String> data3){
+        id.clear();
+        image.clear();
+        name.clear();
+
         id.addAll(data1);
         image.addAll(data2);
         name.addAll(data3);

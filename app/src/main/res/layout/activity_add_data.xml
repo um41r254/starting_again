@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:inputType="number"
         android:hint="Brand ID"
         app:layout_constraintEnd_toEndOf="@+id/brName"
         app:layout_constraintStart_toStartOf="@+id/brName"
@@ -45,11 +46,23 @@
         android:id="@+id/addDoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="48dp"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/brImage" />
+
+    <Button
+        android:id="@+id/del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="@+id/addDoc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addDoc"
+        app:layout_constraintTop_toTopOf="@+id/addDoc" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
