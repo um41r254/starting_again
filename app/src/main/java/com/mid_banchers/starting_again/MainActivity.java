@@ -17,8 +17,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.mid_banchers.starting_again.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
@@ -28,10 +30,11 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ActivityMainBinding binding;
     String path;
     Object pat;
-    
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -39,21 +42,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-           setContentView(view);
+        setContentView(view);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("Brands")
+                .whereEqualTo("id", 3)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+
+                    for (DocumentSnapshot ds : queryDocumentSnapshots.getDocuments()) {
+
+                        setData(ds.getId());
+                    }
+                });
 
 
         binding.btnAddData.setOnClickListener(view1 -> {
-            Intent intent = new Intent(this,AddData.class);
+            Intent intent = new Intent(this, AddData.class);
             startActivity(intent);
 
-//
 
+//
         });
         binding.timeUpd.setOnClickListener(v -> {
-            Map<String,Object> data = new HashMap<>();
-            data.put("addedOn",Timestamp.now());
+            Map<String, Object> data = new HashMap<>();
+            data.put("addedOn", Timestamp.now());
             db.collection("Brands")
                     .addSnapshotListener((value, error) -> {
                         if (error != null) {
@@ -61,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
                         } else {
 
                             Toast.makeText(this, "u", Toast.LENGTH_SHORT).show();
-
-
                             for (QueryDocumentSnapshot ds : value) {
 
                                 db.collection("Brands")
@@ -70,11 +81,7 @@ public class MainActivity extends AppCompatActivity {
                                         .update(data);
                                 Toast.makeText(this, "g", Toast.LENGTH_SHORT).show();
                             }
-
-
                         }
-                        
-
                     });
 //            db.collection("Brands").get().
 //                    .document(path)
@@ -97,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.makeText(MainActivity.this, "Fialed", Toast.LENGTH_SHORT).show();
 //                }
 //            });
-
 
 
         });
@@ -137,4 +143,17 @@ public class MainActivity extends AppCompatActivity {
 //        path.addAll(path1);
 //
 //    }
+
+
+    private void setData(String id) {
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("id", 500);
+
+        db.collection("Brands")
+                .document(id)
+                .update(data);
+    }
+
+
 }

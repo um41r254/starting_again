@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mid_banchers.starting_again.databinding.ActivityAddDataBinding;
 import com.mid_banchers.starting_again.databinding.AddBinding;
@@ -23,38 +24,31 @@ public class AddData extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding= ActivityAddDataBinding.inflate(getLayoutInflater());
+        binding = ActivityAddDataBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        binding.addDoc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
+        binding.addDoc.setOnClickListener(v -> {
 
+            Map<String, Object> data = new HashMap<>();
+            data.put("brandName", binding.brName.getText().toString());
+            data.put("id", Integer.parseInt(binding.brId.getText().toString()));
+            data.put("image", binding.brImage.getText().toString());
+            data.put("addedOn", Timestamp.now());
 
-                Map<String,Object> data = new HashMap<>();
-                data.put("brandName", binding.brName.getText().toString());
-                data.put("id", Integer.parseInt(binding.brId.getText().toString()) );
-                data.put("image", binding.brImage.getText().toString());
-                
-                db.collection("Brands")
-                        .document()
-                        .set(data)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(AddData.this, "Document Added", Toast.LENGTH_SHORT).show();     
-                            }
-                        });
-
-            }
+            db.collection("Brands")
+                    .document()
+                    .set(data)
+                    .addOnSuccessListener(aVoid ->
+                            Toast.makeText(AddData.this, "Document Added", Toast.LENGTH_SHORT).show());
         });
+
         binding.del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddData.this,DeletePage.class);
+                Intent intent = new Intent(AddData.this, DeletePage.class);
                 startActivity(intent);
             }
         });
