@@ -138,6 +138,16 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "next", Toast.LENGTH_SHORT).show();
         });
 
+
+        binding.nPassBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this,NewPassword.class);
+            startActivity(intent);
+        });
+        binding.rPassBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this,PasswordReset.class);
+            startActivity(intent);
+        });
+
     }
 //    public void getPath(List<String>path1){
 //        path.addAll(path1);
