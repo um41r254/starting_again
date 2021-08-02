@@ -110,7 +110,7 @@ public class DeleteRecycle extends RecyclerView.Adapter<DeleteRecycle.DeleteView
                                         Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                                Toast.makeText(context, "dfghj", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "on", Toast.LENGTH_SHORT).show();
                             }
 
                         }

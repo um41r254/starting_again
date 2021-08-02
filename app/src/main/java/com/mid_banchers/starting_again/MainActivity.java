@@ -1,5 +1,6 @@
 package com.mid_banchers.starting_again;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.Timestamp;
@@ -46,21 +48,38 @@ public class MainActivity extends AppCompatActivity {
 
         });
         binding.timeUpd.setOnClickListener(v -> {
-            Map<String,Object> data = new HashMap<>();
-            data.putIfAbsent("addedOn",Timestamp.now());
-            db.collection("Brands");
-            for (String ts: path  ) {
+////            Map<String,Object> keyWord = new HashMap<>();
+////            keyWord.putIfAbsent("addedOn",null);
+//            Map<String,Object> data = new HashMap<>();
+//            data.put("addedOn",Timestamp.now());
+//            db.collection("Brands")
+//                    .document("abc")
+//                        .set(data)
+//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
 
-                       db .document(ts)
-                        .set(data)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
 
+        Map<String, Object> data = new HashMap<>();
+
+            data.put("secondName", "Umair");
+            data.put("isNull", true);
+            data.put("addedOn", Timestamp.now());
+
+
+            db.collection("Brands")
+                    .document("ABC")
+                    .set(data)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Toast.makeText(MainActivity.this, "Data Added", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
 
 
@@ -94,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void getPath(List<String>path1){
-        path.addAll(path1);
-
-    }
+//    public void getPath(List<String>path1){
+//        path.addAll(path1);
+//
+//    }
 }

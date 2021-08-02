@@ -68,7 +68,7 @@ public class DeletePage extends AppCompatActivity {
                     Toast.makeText(this, "Fetched", Toast.LENGTH_SHORT).show();
                     adapter.getdata(listId,listImage,listName,listNum);
 
-                        get.getPath(listNum);
+//                        get.getPath(listNum);
 
 
 
