@@ -1,6 +1,5 @@
 package com.mid_banchers.starting_again;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,22 +9,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.mid_banchers.starting_again.databinding.ActivityMainBinding;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -140,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         binding.nPassBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(this,NewPassword.class);
+            Intent intent = new Intent(this, SignUp.class);
             startActivity(intent);
         });
         binding.rPassBtn.setOnClickListener(v -> {
