@@ -3,7 +3,9 @@ package com.mid_banchers.starting_again;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,28 +28,40 @@ public class SignUp extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-//        String pass = binding.nPass.getText().toString();
-//        String cPass =binding.cPass.getText().toString();
-
-        binding.addPass.setOnClickListener(v -> {
+        binding.progressBarS.setVisibility(View.GONE);
+        binding.newSignUpBtn.setOnClickListener(v -> {
             Map<String,Object> data = new HashMap<>();
             data.put("password",binding.newPassword.getText().toString());
-            data.put("addedOn", Timestamp.now());
+            data.put("addedOn",Timestamp.now());
+            data.put("email",binding.newEmail.getText().toString());
+            data.put("user",binding.newUserName.getText().toString());
+            binding.progressBarS.setVisibility(View.VISIBLE);
+
+            String newPassword = binding.newPassword.getText().toString();
+            String confirmPassword =binding.confirmPassword.getText().toString();
+
+
+            if (TextUtils.equals(newPassword,confirmPassword))  {
+
             db.collection("Password")
                     .document()
                     .set(data).addOnSuccessListener(aVoid -> {
-                Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show();
+                binding.progressBarS.setVisibility(View.GONE);
+
+                Intent intent =new Intent(this,Login.class);
+                startActivity(intent);
+
                     });
-            
 
-//       if (pass.equals(cPass) ) {
-//
-//           Toast.makeText(this, "Matched", Toast.LENGTH_SHORT).show();
-//
-//       }
-//       else
-//           Toast.makeText(this, "Pa"+pass, Toast.LENGTH_SHORT).show();
 
+
+           Toast.makeText(this, "Matched", Toast.LENGTH_SHORT).show();
+
+       }
+       else {
+                binding.progressBarS.setVisibility(View.GONE);
+                Toast.makeText(this, "Password Not Matched", Toast.LENGTH_SHORT).show();
+            }
 
         });
         

@@ -9,20 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Starting_again">
-        <activity android:name=".Login"></activity>
-        <activity android:name=".SignUp" />
-        <activity android:name=".PasswordReset" />
+        <activity android:name=".Login">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".SignUp" >
+
+        </activity>
+        <activity android:name=".PasswordReset" >
+
+        </activity>
         <activity android:name=".DeletePage" />
         <activity android:name=".AddData" />
         <activity android:name=".RecycleImplement" />
         <activity android:name=".Tab" />
         <activity android:name=".DropTest" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
