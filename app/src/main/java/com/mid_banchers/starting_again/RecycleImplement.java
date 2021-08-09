@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleImplement extends AppCompatActivity {
-    List<String> listImage = new ArrayList<>();
-    List<String> listName = new ArrayList<>();
-    List<String> listID = new ArrayList<>();
+    List<DataModelBrands> dataModelBrandsList = new ArrayList<>();
+    private static final String  TAG = "RecycleImplement de";
+
     RecycleDirectAdapter adapter;
 
     private ActivityRecycleImplementBinding binding;
@@ -48,20 +48,17 @@ public class RecycleImplement extends AppCompatActivity {
                         Log.w("Fail", error);
                     } else {
 
-                        listName.clear();
-                        listImage.clear();
-                        listID.clear();
+                       dataModelBrandsList.clear();
 
 
                         for (QueryDocumentSnapshot ds : value) {
-                            listName.add(ds.getString("brandName"));
-                            listImage.add(ds.getString("image"));
-                            listID.add(ds.getId());
+                            dataModelBrandsList.add(ds.toObject(DataModelBrands.class));
+                            Log.d(TAG, "onSuccess: " + dataModelBrandsList.get(Integer.parseInt(ds.getId())).getBrandName());
                         }
                     }
 
                     Toast.makeText(RecycleImplement.this, "Fetched", Toast.LENGTH_SHORT).show();
-                    adapter.getData(listID, listImage, listName);
+                    adapter.getData(dataModelBrandsList);
 
 
 

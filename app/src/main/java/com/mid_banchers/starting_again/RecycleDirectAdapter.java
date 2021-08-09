@@ -19,9 +19,8 @@ import java.util.List;
 
 public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdapter.ViewHolderDirect> {
     private Context context;
-    private List<String> listID = new ArrayList<>();
-    private List<String> listName = new ArrayList<>();
-    private List<String> listImage = new ArrayList<>();
+    private static final String TAG ="RecycleDirectAdapter de";
+    private List<DataModelBrands> dataModelBrandsList= new ArrayList<>();
 
     public RecycleDirectAdapter(Context context) {
         this.context = context;
@@ -37,9 +36,9 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDirect holder, int position) {
-        if (listID.size() > 0) {
-            holder.textView.setText(listName.get(position));
-            Glide.with(context).load(listImage.get(position))
+        if (dataModelBrandsList.size() > 0) {
+            holder.textView.setText(dataModelBrandsList.get(position).getBrandName());
+            Glide.with(context).load(dataModelBrandsList.get(position).getImage())
                     .into(holder.imageView);
 
 
@@ -49,18 +48,16 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
 
     @Override
     public int getItemCount() {
-        return listID.size();
+        return dataModelBrandsList.size();
     }
 
-    public void getData(List<String> data1, List<String> data2, List<String> data3) {
+    public void getData(List<DataModelBrands> data) {
 
-        listID.clear();
-        listImage.clear();
-        listName.clear();
+       dataModelBrandsList.clear();
 
-        listID.addAll(data1);
-        listImage.addAll(data2);
-        listName.addAll(data3);
+       dataModelBrandsList.addAll(data);
+
+
         notifyDataSetChanged();
     }
 
@@ -83,8 +80,8 @@ public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdap
 
 
 
-                  String name = listName.get(ViewHolderDirect.this.getAdapterPosition());
-                  String image= listImage.get(ViewHolderDirect.this.getAdapterPosition());
+                  String name = dataModelBrandsList.get(ViewHolderDirect.this.getAdapterPosition()).getBrandName();
+                  String image= dataModelBrandsList.get(ViewHolderDirect.this.getAdapterPosition()).getImage();
 //                  new Dialog(context,name,image)
 //                          .show();
 

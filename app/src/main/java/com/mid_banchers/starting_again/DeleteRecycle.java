@@ -2,6 +2,7 @@ package com.mid_banchers.starting_again;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,8 @@ import java.util.List;
 
 public class DeleteRecycle extends RecyclerView.Adapter<DeleteRecycle.DeleteViewHolder> {
     private Context context;
-    List<String>  listNum = new ArrayList<>();
-    List<String>  listImage = new ArrayList<>();
-    List<String>  listId = new ArrayList<>();
-    List<String>  listName = new ArrayList<>();
+    private static final String TAG ="DeleteRecycle de";
+    private List<DataModelBrands> dataModelBrandsList= new ArrayList<>();
 
     public DeleteRecycle(Context context) {
         this.context = context;
@@ -43,9 +42,9 @@ public class DeleteRecycle extends RecyclerView.Adapter<DeleteRecycle.DeleteView
     @Override
     public void onBindViewHolder(@NonNull DeleteViewHolder holder, int position) {
 
-            holder.binding.idD.setText(listId.get(position));
-            holder.binding.imgD.setText(listImage.get(position));
-            holder.binding.nameD.setText(listName.get(position));
+            holder.binding.idD.setText(String.valueOf(dataModelBrandsList.get(position).getId()));
+            holder.binding.imgD.setText(dataModelBrandsList.get(position).getImage());
+            holder.binding.nameD.setText(dataModelBrandsList.get(position).getBrandName());
 
 
 
@@ -54,21 +53,16 @@ public class DeleteRecycle extends RecyclerView.Adapter<DeleteRecycle.DeleteView
     @Override
     public int getItemCount() {
 //        if (listNum.size()>0)
-        return listNum.size();
+        return dataModelBrandsList.size();
 //        else
 //        return 7;
     }
 
-    public void getdata(List<String>data1,List<String> data2, List<String> data3, List<String>data4){
-        listImage.clear();
-        listName.clear();
-        listNum.clear();
-        listId.clear();
+    public void getData(List<DataModelBrands>data){
+        dataModelBrandsList.clear();
 
-        listId.addAll(data1);
-        listImage.addAll(data2);
-        listName.addAll(data3);
-        listNum.addAll(data4);
+      dataModelBrandsList.addAll(data);
+
         notifyDataSetChanged();
 
 
@@ -85,7 +79,7 @@ public class DeleteRecycle extends RecyclerView.Adapter<DeleteRecycle.DeleteView
 
                 @Override
                 public void onClick(View v) {
-                    String obj = listNum.get(DeleteViewHolder.this.getAdapterPosition());
+                    String obj = dataModelBrandsList.get(DeleteViewHolder.this.getAdapterPosition()).getBrandName();
 //                    obj.get(db.collection("Brands").document().getId());
 
                     String yes[] = {"Delete"};
@@ -110,7 +104,7 @@ public class DeleteRecycle extends RecyclerView.Adapter<DeleteRecycle.DeleteView
                                         Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                                Toast.makeText(context, "on", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "Dialog"+which);
                             }
 
                         }

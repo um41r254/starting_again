@@ -18,10 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeletePage extends AppCompatActivity {
-    List<String> listImage = new ArrayList<>();
-    List<String> listName = new ArrayList<>();
-    List<String> listId = new ArrayList<>();
-    List<String> listNum = new ArrayList<>();
+    private static final String TAG ="DeletePage de";
+    private List<DataModelBrands> dataModelBrandsList= new ArrayList<>();
     DeleteRecycle adapter;
     MainActivity get = new MainActivity();
 
@@ -51,22 +49,19 @@ public class DeletePage extends AppCompatActivity {
                         Log.w("Fail", error);
                     } else {
 
-                        listName.clear();
-                        listImage.clear();
-                        listId.clear();
-                        listNum.clear();
+                      dataModelBrandsList.clear();
+
 
                         for (QueryDocumentSnapshot ds : value) {
 
-                            listName.add(ds.getString("brandName"));
-                            listImage.add(ds.getString("image"));
-                            listId.add(String.valueOf(ds.getLong("id")));
-                            listNum.add(ds.getId());
+                            dataModelBrandsList.add(ds.toObject(DataModelBrands.class));
+                            Log.d(TAG, "onSuccess: " + dataModelBrandsList.get(Integer.parseInt(ds.getId())).getBrandName());
+
                         }
                     }
 
                     Toast.makeText(this, "Fetched", Toast.LENGTH_SHORT).show();
-                    adapter.getdata(listId,listImage,listName,listNum);
+                    adapter.getData(dataModelBrandsList);
 
 //                        get.getPath(listNum);
 

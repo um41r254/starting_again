@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ import java.util.Map;
 public class Login extends AppCompatActivity {
     FirebaseFirestore fb = FirebaseFirestore.getInstance();
     LoginBinding binding ;
+    DataModelPassword obj;
+    private static final String TAG = "Login";
     List<DataModelPassword> data = new ArrayList() ;
 //    Map<Class<DataModelPassword>, DataModelPassword> well = new HashMap<>();
 
@@ -47,25 +50,38 @@ public class Login extends AppCompatActivity {
             fb.collection("Password")
                     .whereEqualTo("email",binding.userSignUp.getText().toString())
                     .whereEqualTo("password",binding.signUpPassword.getText().toString())
-
-
                     .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    for (DocumentSnapshot df : queryDocumentSnapshots.getDocuments()){
-                        data.clear();
+
+
+                    if(!queryDocumentSnapshots.isEmpty()){
+
+                        for (DocumentSnapshot df : queryDocumentSnapshots.getDocuments()){
+                            data.clear();
 //                        well.put(DataModelPassword.class,df.toObject(DataModelPassword.class));
 
 //                        Toast.makeText(Login.this, "aaa"+well.get(""), Toast.LENGTH_SHORT).show();
 
-                        data.add(df.toObject(DataModelPassword.class));
+                            data.add(df.toObject(DataModelPassword.class));
+                            obj = df.toObject(DataModelPassword.class);
+                            Log.d(TAG, "onSuccess: "+ data.get(0).getPassword());
+
+                        }
+                    }else {
+
 
                     }
-                    if(data.get(0).getEmail().equals(binding.userSignUp.getText().toString())&&
-                        data.get(0).getPassword().equals(binding.signUpPassword.getText().toString())){
+
+
+
+
+                    if(obj.getEmail().equals(binding.userSignUp.getText().toString())&&
+                        obj.getPassword().equals(binding.signUpPassword.getText().toString())){
                         binding.progressBar2.setVisibility(View.GONE);
                         Intent intent = new Intent(Login.this,MainActivity.class);
                         startActivity(intent);
+
 
 
                     }else{

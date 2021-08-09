@@ -21,10 +21,9 @@ import java.util.List;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {
 private Context context;
-private List <String>  id= new ArrayList<>();
-private List <String>  name= new ArrayList<>();
-private List <String>  image = new ArrayList<>();
 
+    private static final String TAG ="RecycleAdapter de";
+    private List<DataModelBrands> dataModelBrandsList= new ArrayList<>();
     public RecycleAdapter(Context context) {
         this.context = context;
     }
@@ -39,9 +38,9 @@ binding = BrandBinding.inflate(LayoutInflater.from(parent.getContext()),parent,f
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (id.size()>0){
-            binding.bName.setText(name.get(position));
-            Glide.with(context).load(image.get(position))
+        if (dataModelBrandsList.size()>0){
+            binding.bName.setText(dataModelBrandsList.get(position).getBrandName());
+            Glide.with(context).load(dataModelBrandsList.get(position).getImage())
                     .into(binding.bLogo);
 
 
@@ -51,20 +50,17 @@ binding = BrandBinding.inflate(LayoutInflater.from(parent.getContext()),parent,f
 
     @Override
     public int getItemCount() {
-        if (id.size()==0){
+        if (dataModelBrandsList.size()==0){
         return 10;
     }else {
-            return id.size();
+            return dataModelBrandsList.size();
         }
     }
-    public void getdata(List<String> data1 ,List<String> data2 ,List<String> data3){
-        id.clear();
-        image.clear();
-        name.clear();
+    public void getData(List<DataModelBrands> data){
+        dataModelBrandsList.clear();
 
-        id.addAll(data1);
-        image.addAll(data2);
-        name.addAll(data3);
+        dataModelBrandsList.addAll(data);
+
         notifyDataSetChanged();
     }
 
@@ -82,15 +78,15 @@ binding = BrandBinding.inflate(LayoutInflater.from(parent.getContext()),parent,f
             binding.brand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String nameString = name.get(ViewHolder.this.getAdapterPosition());
-                    String imageString = image.get(ViewHolder.this.getAdapterPosition());
+                    String name = dataModelBrandsList.get(RecycleAdapter.ViewHolder.this.getAdapterPosition()).getBrandName();
+                    String image= dataModelBrandsList.get(RecycleAdapter.ViewHolder.this.getAdapterPosition()).getImage();
 
                     ShowingStringBinding showingStringBinding;
                     showingStringBinding= ShowingStringBinding.inflate(LayoutInflater.from(context));
                     View view = showingStringBinding.getRoot();
 
-                    showingStringBinding.string1.setText(nameString);
-                    showingStringBinding.string2.setText(imageString);
+                    showingStringBinding.string1.setText(name);
+                    showingStringBinding.string2.setText(image);
 //                    Glide.with(context).load(image).into(imageV);
                     MaterialAlertDialogBuilder popUP = new MaterialAlertDialogBuilder(context);
                     popUP.setView(view);

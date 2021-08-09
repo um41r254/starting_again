@@ -25,8 +25,8 @@ FirebaseFirestore db = FirebaseFirestore.getInstance();
 ActivityPasswordResetBinding binding;
 
 String checkEmail;
-
 List<DataModelPassword> dataModelPasswordList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ActivityMainBinding binding;
+    private static final String TAG ="MainActivity de";
     String path;
     Object pat;
 
@@ -38,16 +39,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
 
 
-        db.collection("Brands")
-                .whereEqualTo("id", 3)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-
-                    for (DocumentSnapshot ds : queryDocumentSnapshots.getDocuments()) {
-
-                        setData(ds.getId());
-                    }
-                });
+//        db.collection("Brands")
+//                .whereEqualTo("id", 3)
+//                .get()
+//                .addOnSuccessListener(queryDocumentSnapshots -> {
+//
+//                    for (DocumentSnapshot ds : queryDocumentSnapshots.getDocuments()) {
+//
+//                        setData(ds.getId());
+//                    }
+//                });
 
 
         binding.btnAddData.setOnClickListener(view1 -> {
@@ -65,15 +66,16 @@ public class MainActivity extends AppCompatActivity {
                         if (error != null) {
                             Log.w("Fail", error);
                         } else {
+                            Log.d(TAG, " Data Exists");
 
-                            Toast.makeText(this, "u", Toast.LENGTH_SHORT).show();
                             for (QueryDocumentSnapshot ds : value) {
 
                                 db.collection("Brands")
                                         .document(ds.getId())
                                         .update(data);
-                                Toast.makeText(this, "g", Toast.LENGTH_SHORT).show();
+
                             }
+                            Log.d(TAG, "Updated");
                         }
                     });
 //            db.collection("Brands").get().
@@ -128,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
         binding.next.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, DropTest.class);
             startActivity(intent);
-            Toast.makeText(this, "next", Toast.LENGTH_SHORT).show();
         });
 
 
@@ -148,15 +149,15 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-    private void setData(String id) {
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("id", 500);
-
-        db.collection("Brands")
-                .document(id)
-                .update(data);
-    }
+//    private void setData(String id) {
+//
+//        Map<String, Object> data = new HashMap<>();
+//        data.put("id", 500);
+//
+//        db.collection("Brands")
+//                .document(id)
+//                .update(data);
+//    }
 
 
 }

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +27,8 @@ import java.util.List;
 public class Tab2 extends Fragment {
 //    RecyclerView reshow;
     RecycleDirectAdapter AdapterDirect;
-    List<String> name = new ArrayList<>();
-    List<String> image = new ArrayList<>();
-    List<String> id = new ArrayList<>();
+   List<DataModelBrands> dataModelBrandsList = new ArrayList<>();
+   private static final String  TAG = "Tab2 de";
 
 
 
@@ -64,19 +64,19 @@ private FragmentTab2Binding binding;
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for(DocumentSnapshot Ds : queryDocumentSnapshots.getDocuments())
-                        {
-
-                            name.add(Ds.getString("brandName"));
-                            image.add(Ds.getString("image"));
-                            id.add(Ds.getId());
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            for (DocumentSnapshot ds : queryDocumentSnapshots.getDocuments()) {
+                                dataModelBrandsList.add(ds.toObject(DataModelBrands.class));
+                                Log.d(TAG, "onSuccess: " + dataModelBrandsList.get(getId()).getBrandName());
+                            }
                         }
-                        AdapterDirect.getData(id,image,name);
+                        AdapterDirect.getData(dataModelBrandsList);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                Log.e(TAG, "Error Data not found" );
 
             }
         });
