@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeletePage extends AppCompatActivity {
-    private static final String TAG ="DeletePage de";
+    private static final String TAG ="DeletePage De";
     private List<DataModelBrands> dataModelBrandsList= new ArrayList<>();
     DeleteRecycle adapter;
     MainActivity get = new MainActivity();

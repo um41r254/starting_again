@@ -28,7 +28,7 @@ public class Tab2 extends Fragment {
 //    RecyclerView reshow;
     RecycleDirectAdapter AdapterDirect;
    List<DataModelBrands> dataModelBrandsList = new ArrayList<>();
-   private static final String  TAG = "Tab2 de";
+   private static final String  TAG = "Tab2 De";
 
 
 

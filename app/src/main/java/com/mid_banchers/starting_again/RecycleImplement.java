@@ -18,7 +18,7 @@ import java.util.List;
 
 public class RecycleImplement extends AppCompatActivity {
     List<DataModelBrands> dataModelBrandsList = new ArrayList<>();
-    private static final String  TAG = "RecycleImplement de";
+    private static final String  TAG = "RecycleImplement De";
 
     RecycleDirectAdapter adapter;
 

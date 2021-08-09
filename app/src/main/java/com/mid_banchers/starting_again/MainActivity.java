@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ActivityMainBinding binding;
-    private static final String TAG ="MainActivity de";
+    private static final String TAG ="MainActivity De";
     String path;
     Object pat;
 

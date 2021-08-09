@@ -50,7 +50,7 @@ public class SignUp extends AppCompatActivity {
                 Log.d(TAG, "password: equals");
 
             db.collection("Password")
-                    .document()
+                    .document(binding.newEmail.getText().toString())
                     .set(data).addOnSuccessListener(aVoid -> {
                 binding.progressBarS.setVisibility(View.GONE);
                 Log.d(TAG, "Data Added");

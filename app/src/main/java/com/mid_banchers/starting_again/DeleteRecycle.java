@@ -23,7 +23,7 @@ import java.util.List;
 
 public class DeleteRecycle extends RecyclerView.Adapter<DeleteRecycle.DeleteViewHolder> {
     private Context context;
-    private static final String TAG ="DeleteRecycle de";
+    private static final String TAG ="DeleteRecycle De";
     private List<DataModelBrands> dataModelBrandsList= new ArrayList<>();
 
     public DeleteRecycle(Context context) {

@@ -22,7 +22,7 @@ import java.util.List;
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {
 private Context context;
 
-    private static final String TAG ="RecycleAdapter de";
+    private static final String TAG ="RecycleAdapter De";
     private List<DataModelBrands> dataModelBrandsList= new ArrayList<>();
     public RecycleAdapter(Context context) {
         this.context = context;

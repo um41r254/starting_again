@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,9 +24,11 @@ import java.util.Map;
 public class PasswordReset extends AppCompatActivity {
 FirebaseFirestore db = FirebaseFirestore.getInstance();
 ActivityPasswordResetBinding binding;
+    DataModelPassword obj;
+    private static final String TAG = "PasswordReset De";
 
 String checkEmail;
-List<DataModelPassword> dataModelPasswordList = new ArrayList<>();
+//List<DataModelPassword> dataModelPasswordList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +48,18 @@ List<DataModelPassword> dataModelPasswordList = new ArrayList<>();
         binding.checkEmailBtn.setOnClickListener(v -> {
             binding.progressBar.setVisibility(View.VISIBLE);
             db.collection("Password")
-                    .whereEqualTo("email",binding.checkEmail.getText().toString())
-                    .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    .document(binding.checkEmail.getText().toString())
+
+                    .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    obj = documentSnapshot.toObject(DataModelPassword.class);
+                    Toast.makeText(PasswordReset.this, "Matched", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "Matched ");
 
-                    for (DocumentSnapshot ds : queryDocumentSnapshots.getDocuments()) {
 
-                        dataModelPasswordList.add(ds.toObject(DataModelPassword.class));
-//                    path = ds.getId();
-                        Toast.makeText(PasswordReset.this, "Matched", Toast.LENGTH_SHORT).show();
 
-//                        dataModelPasswordList.add(DataModelPassword.class);
-
-                    }
-                    if (dataModelPasswordList.get(0).getEmail().equals(binding.checkEmail.getText().toString())){
+                    if (obj.getEmail().equals(binding.checkEmail.getText().toString())){
 
                     binding.progressBar.setVisibility(View.GONE);
                     binding.confrimEmailGroup.setVisibility(View.GONE);
@@ -73,7 +73,7 @@ List<DataModelPassword> dataModelPasswordList = new ArrayList<>();
                 }
             }).addOnFailureListener(e -> {
                 Toast.makeText(this, "Email Does not Matched", Toast.LENGTH_SHORT).show();
-
+                Log.e(TAG, "Email Does not Matched" );
             });
 
 
@@ -88,36 +88,36 @@ List<DataModelPassword> dataModelPasswordList = new ArrayList<>();
             data.put("password",binding.newPass.getText().toString());
             data.put("changedOn", Timestamp.now());
 
-          if (dataModelPasswordList.get(0).getPassword().equals(binding.oldPass.getText().toString())){
-
-              db.collection("Password")
-                      .whereEqualTo("password",binding.oldPass.getText().toString())
-                      .get()
-                      .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                          @Override
-                          public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                              for (DocumentSnapshot ds : queryDocumentSnapshots.getDocuments()) {
-                                  updateData(data, ds.getId());
-                              }
-
-                          }
-
-
-                      });
-
-          }else {
-              binding.progressBar.setVisibility(View.GONE);
-              Toast.makeText(PasswordReset.this, "Password not Exits", Toast.LENGTH_SHORT).show();
-          }
-//            updateData(data);
+//          if (obj.getPassword().equals(binding.oldPass.getText().toString())){
+//
+//              db.collection("Password")
+//                      .whereEqualTo("password",binding.oldPass.getText().toString())
+//                      .get()
+//                      .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                          @Override
+//                          public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                              for (DocumentSnapshot ds : queryDocumentSnapshots.getDocuments()) {
+//                                  updateData(data, ds.getId());
+//                              }
+//
+//                          }
+//
+//
+//                      });
+//
+//          }else {
+//              binding.progressBar.setVisibility(View.GONE);
+//              Toast.makeText(PasswordReset.this, "Password not Exits", Toast.LENGTH_SHORT).show();
+//          }
+            updateData(data);
 
 
         });
 
     }
-    public void updateData(Map<String,Object> data, String path){
+    public void updateData(Map<String,Object> data){
         db.collection("Password")
-                .document(path)
+                .document(binding.checkEmail.getText().toString())
                 .update(data)
                 .addOnSuccessListener(new OnSuccessListener() {
                     @Override

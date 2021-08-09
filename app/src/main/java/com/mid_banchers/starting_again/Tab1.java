@@ -32,7 +32,7 @@ public class Tab1 extends Fragment {
 //    RecyclerView reload;
     RecycleAdapter Adapter;
     List<DataModelBrands> dataModelBrandsList = new ArrayList<>();
-    private static final String  TAG = "Tab1 de";
+    private static final String  TAG = "Tab1 De";
 
     public Tab1() {
 

@@ -19,7 +19,7 @@ import java.util.List;
 
 public class RecycleDirectAdapter extends RecyclerView.Adapter<RecycleDirectAdapter.ViewHolderDirect> {
     private Context context;
-    private static final String TAG ="RecycleDirectAdapter de";
+    private static final String TAG ="RecycleDirectAdapter De";
     private List<DataModelBrands> dataModelBrandsList= new ArrayList<>();
 
     public RecycleDirectAdapter(Context context) {

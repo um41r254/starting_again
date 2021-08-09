@@ -25,8 +25,8 @@ public class Login extends AppCompatActivity {
     FirebaseFirestore fb = FirebaseFirestore.getInstance();
     LoginBinding binding ;
     DataModelPassword obj;
-    private static final String TAG = "Login";
-    List<DataModelPassword> data = new ArrayList() ;
+    private static final String TAG = "Login De ";
+//    List<DataModelPassword> data = new ArrayList() ;
 //    Map<Class<DataModelPassword>, DataModelPassword> well = new HashMap<>();
 
     @Override
@@ -48,39 +48,19 @@ public class Login extends AppCompatActivity {
         binding.loginBtn.setOnClickListener(v -> {
             binding.progressBar2.setVisibility(View.VISIBLE);
             fb.collection("Password")
-                    .whereEqualTo("email",binding.userSignUp.getText().toString())
-                    .whereEqualTo("password",binding.signUpPassword.getText().toString())
-                    .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    .document(binding.userSignUp.getText().toString())
+
+                    .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                   obj =  documentSnapshot.toObject(DataModelPassword.class);
 
 
-                    if(!queryDocumentSnapshots.isEmpty()){
-
-                        for (DocumentSnapshot df : queryDocumentSnapshots.getDocuments()){
-                            data.clear();
-//                        well.put(DataModelPassword.class,df.toObject(DataModelPassword.class));
-
-//                        Toast.makeText(Login.this, "aaa"+well.get(""), Toast.LENGTH_SHORT).show();
-
-                            data.add(df.toObject(DataModelPassword.class));
-                            obj = df.toObject(DataModelPassword.class);
-                            Log.d(TAG, "onSuccess: "+ data.get(0).getPassword());
-
-                        }
-                    }else {
-
-
-                    }
-
-
-
-
-                    if(obj.getEmail().equals(binding.userSignUp.getText().toString())&&
-                        obj.getPassword().equals(binding.signUpPassword.getText().toString())){
+                    if(obj.getPassword().equals(binding.signUpPassword.getText().toString())){
                         binding.progressBar2.setVisibility(View.GONE);
                         Intent intent = new Intent(Login.this,MainActivity.class);
                         startActivity(intent);
+                        Log.d(TAG, "Password Matched");
 
 
 
@@ -88,27 +68,25 @@ public class Login extends AppCompatActivity {
 
                         binding.progressBar2.setVisibility(View.GONE);
                         Toast.makeText(Login.this, "Account Does Not Exits", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Account Does Not Exits " );
 
 
                     }
 
+//                   Toast.makeText(Login.this, "Welcome "+data.get(0).getUser(), Toast.LENGTH_SHORT).show();
 
+            }
 
-
-
-
-//                    Toast.makeText(Login.this, "Welcome "+data.get(0).getUser(), Toast.LENGTH_SHORT).show();
-                }
-
-            }).addOnFailureListener(new OnFailureListener() {
+        }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     binding.progressBar2.setVisibility(View.GONE);
                     Toast.makeText(Login.this, "Error", Toast.LENGTH_SHORT).show();
 
-                }});
-
+                }
         });
 
-    }
+    });
+
+}
 }
